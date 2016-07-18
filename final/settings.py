@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fipi_db',
         'USER': 'postgres',
-        'PASSWORD': 'jgwssljcnegf784523',
+        'PASSWORD': '111',
         'HOST': 'localhost',
         'PORT': '5432',
     }
