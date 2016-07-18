@@ -1,0 +1,48 @@
+body {
+
+	background: white url("images/background.png");
+
+
+}
+
+h1 { 
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700; 
+}
+
+.plain { 
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400; 
+}
+
+.chapters { 
+  font-family: 'Play', sans-serif;
+  font-weight: 400; 
+}
+.navbar{
+	border-radius: 0;
+}
+
+.navbar-brand{
+	font-family: 'Pacifico', cursive;
+  font-size: 25px;
+}
+
+.logo{
+  font-family: 'Pacifico', cursive;
+}
+
+#holder {
+  border-radius: 5% 5% 5% 5%;
+  border: 2px gray solid;  
+
+}
+
+#holder div{
+  display: table-cell;
+  height: 150px;
+  width: 150px;
+  text-align: center;
+  vertical-align: middle;
+}
+

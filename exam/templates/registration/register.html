@@ -1,0 +1,39 @@
+{% extends "public/base.html" %}
+{% block title %}Регистрация{% endblock %}
+
+{% block body %}
+<div class="well plain" align="right">
+	
+		<form method="post" role = 'form' action="">
+		{% csrf_token %}
+		<table>
+		<tr>
+			<td><div class="input-group" >
+			<span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1" ></span>
+			<input type="username" class="form-control" placeholder="Имя" name=  '{{form.username}} ' />
+			
+		    </div></td>
+		</tr>
+		<tr>
+			<td><div class="input-group" >
+			<span class="input-group-addon glyphicon glyphicon-envelope" id="basic-addon1"></span>
+			<input type="email"  class="form-control" placeholder="E-mail" name=  '{{form.email}}'/>
+			
+		    </div></td>
+		</tr>
+		<tr>
+			<td><div class="input-group" >
+			<span class="input-group-addon glyphicon glyphicon-asterisk" id="basic-addon1"></span>
+			<input type="password"  class="form-control" placeholder="Пароль" name=  '{{form.password}}' /> 
+			
+		    </div></td>
+		</tr>
+		</table>
+		<br>
+		<input type="submit" class="btn btn-primary" value="Зарегистрироваться" />
+		<input type="hidden" name="next" value="{{ next }}" />
+		</form>
+		<br>
+</div>
+		{% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends 'public/base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block css_chapter %}  
+	<link href='https://fonts.googleapis.com/css?family=Play&subset=cyrillic' rel='stylesheet' type='text/css'> 
+{% endblock %}
+
+{% block body %}
+	{% if chapters %}
+		
+				<ul type="none">
+				<h3 class="plain text-left">Разделы:</h3>	
+						{% for chapter in chapters %}
+					<li>	
+						<a href="{% url 'exam:problem_list' chapter_id=chapter.id %}">					
+							<h3 class="plain">{{chapter.chapterName}}</h3>
+						</a>
+					</li>
+						{% endfor %}
+				</ul>
+
+	{% else %}
+		<h3 class="plain">Нет тем для выбранного предмета</h3>
+	{% endif %}
+{% endblock %}

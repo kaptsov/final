@@ -1,0 +1,21 @@
+{% extends 'public/base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block body %}
+	{% if subjects %}
+
+			<ul type="none">	
+			<h3 class="plain text-left">Все предметы:</h3>				
+				{% for subject in subjects %}
+					<li>	
+						<a href="{% url 'exam:chapter_list' subject_id=subject.id %}">					
+							<h3 class="plain">{{subject.subjectName}}</h3>
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+	{% else %}
+		<h3 class="plain">Нет предметов в базе</h3>
+	{% endif %}
+{% endblock %}

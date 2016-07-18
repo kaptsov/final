@@ -1,0 +1,45 @@
+{% extends "public/base.html" %}
+{% block title %}Вход{% endblock %}
+{% block body %}
+<div class="well" align="right">
+	<div class="plain">
+		{% if form.errors %}
+		<p>Неверный логин или пароль. Попробуйте еще раз</p>
+
+		{% endif %}
+
+		{% if next %}
+		    {% if user.is_authenticated %}
+		    <p>Ваш аккаунт не имеет доступа к этой странице.</p>
+		    {% else %}
+		    <p>Залогиньтесь, пожалуйста, чтобы увидеть эту страницу.</p>
+		    {% endif %}
+		{% endif %}
+<div class="input-group">
+  
+  
+
+		<form method="post" action="{% url 'exam:login' %}">
+		{% csrf_token %}
+		<table>
+		<tr>
+		    <span class="input-group-addon" id="basic-addon1"><td>{{ form.username.label_tag }}&nbsp;</td></span>
+		    <span class="input-group-addon" id="basic-addon1"><td>{{ form.username }}&nbsp;</td></span>
+		</tr>
+		<tr>
+		    <td>{{ form.password.label_tag }}&nbsp;</td>
+		    <td>{{ form.password }}&nbsp;</td>
+		</tr>
+		</table>
+		<br>
+		<input type="submit" value="Вход" />
+		<input type="hidden" name="next" value="{{ next }}" />
+		</form>
+		<br>
+		{# Assumes you setup the password_reset view in your URLconf #}
+		<p><a href="{% url 'exam:password_reset' %}">Забыли пароль?</a></p>
+		<p><a href="{% url 'exam:register' %}">Регистрация</a></p>
+	</div>
+</div>
+</div>
+		{% endblock %}
