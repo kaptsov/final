@@ -1,23 +1,32 @@
 {% extends 'public/base.html' %}
 {% block title %}{{ title }}{% endblock %}
+
 {% block css_chapter %}  
 <link href='https://fonts.googleapis.com/css?family=Play&subset=cyrillic' rel='stylesheet' type='text/css'>
 <script src="http://fred-wang.github.io/mathjax.js/mpadded-min.js"></script>
-
-
 {% endblock %}
 
 {% block body %}
 	{% if problems %}
-		
-				<ul type="none">
-				
-				<h3 class="plain text-left">Задачи:</h3>	
+			
+				<ul type="none" class="plain text-left">
+				<h3 >
+					<strong>
+					<a href="{% url 'exam:subject_list' exam_id=exam_link.id %}"">	 {{ exam_link.examName }} </a> /
+					<a href="{% url 'exam:chapter_list' subject_id=subject.id %}"">	 {{ subject.subjectName }} </a> / 
+					{{ title }} 
+					</strong>
+				</h3> 
+
+
+
+				<h3>Задачи:</h3>	
 						{% for problem in problems %}
 					<li>
 					<div class="panel panel-default">
 						<div class = "panel-heading">
 							<h4 class="chapters"> #[{{problem.id}}] </h4>
+
 							<div class="btn-group" role="group" aria-label="Right Align">
 							<button type="button" class="btn btn-default" >
  					 		<span class="glyphicon glyphicon-ok" ></span>
@@ -45,57 +54,19 @@
 				
 						{% endfor %}
 				</ul>
-<h5 class="plain">
-<div class="panel panel-default ">
-	<div class = "panel-heading" align="center">
-		<span class="step-links">
-			{% if problems.has_previous %}
-				<a href="?page={{ problems.previous_page_number }}">Назад</a>
-			{% endif %}
 
-			<span class="current">
-				стр. {{ problems.number }} из {{ problems.paginator.num_pages }}.
-			</span>
+	{% include 'public/includes/paginator.html' %}
 
-			{% if problems.has_next %}
-				<a href="?page={{ problems.next_page_number }}">Вперед</a>
-			{% endif %}
-		</span>
-		<div class="panel-body">
-			<div class="well">
-			<nav>
-				<div class="pagination">
-				<li>
-				{% if problems.has_previous %}
-					<a href="?page={{ problems.previous_page_number }}" aria-label="Previous">
-						<span aria-hidden="true">&laquo;</span>
-					</a>
-				{% endif %}
-				</li>
-
-					      {% for pn in problems.paginator.page_range %}
-
-					        {% if problems.number != pn %}
-					          <li><a href="?page={{ pn }}{% if sort and order %}&sort={{ sort }}&order={{ order }}{% endif %}{% if search %}&search={{ search }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">{{ pn }}</a></li>
-					        {% endif %}
-					        
-
-					      {% endfor %}
-				{% if problems.has_next %}
-				<li>
-					<a href='?page={{ problems.next_page_number }}' aria-label="Next">
-						<span aria-hidden="true">&raquo;</span>
-					</a>
-				</li>
-				{% endif %}
-				</div>
-			</nav>
-			</div>
-		</div>	
-	</div>
-</div>
-</h5>
 	{% else %}
+	<ul>
+				<h3 class="plain text-left">
+					<strong>
+					<a href="{% url 'exam:subject_list' exam_id=exam_link.id %}"">	 {{ exam_link.examName }} </a> /
+					<a href="{% url 'exam:chapter_list' subject_id=subject.id %}"">	 {{ subject.subjectName }} </a> / 
+					{{ title }} 
+					</strong>
+				</h3> 
 		<h3 class="plain">Нет задач для выбранного раздела</h3>
+	</ul>
 	{% endif %}
 {% endblock %}
