@@ -8,6 +8,8 @@
 	{% if chapters %}
 		
 				<ul type="none">
+					<a href="{% url 'exam:subject_list' exam_id=return_link.id %}"">	
+					<h3 class="plain text-left"><strong> {{ return_link.examName }} </a> / {{ title }} </strong></h3> 
 				<h3 class="plain text-left">Разделы:</h3>	
 						{% for chapter in chapters %}
 					<li>	
@@ -19,6 +21,13 @@
 				</ul>
 
 	{% else %}
+				<h3 class="plain text-left">
+					<strong>
+					<a href="{% url 'exam:subject_list' exam_id=return_link.id %}"">	
+					<h3 class="plain text-left"><strong> {{ return_link.examName }} </a> / {{ title }} </strong></h3>  
+					{{ title }} 
+					</strong>
+				</h3> 
 		<h3 class="plain">Нет тем для выбранного предмета</h3>
 	{% endif %}
 {% endblock %}
